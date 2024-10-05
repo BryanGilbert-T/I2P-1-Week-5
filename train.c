@@ -1,17 +1,19 @@
 #include <stdio.h>
 
-int sum(int x);
+int fibonaci(int x);
 int main(void){
     int x;
 
     scanf("%d", &x);
-    printf("%d", sum(x));
+    fibonaci(50);
     return 0;
 }
 
-int sum(int x){
+int fibonaci(int x){
     if(x == 0){
         return 0;
     }
-    return (x % 10) + sum(x / 10);
+    fibonaci(x - 1);
+    printf("%d ", x);
+    return 0;
 }
