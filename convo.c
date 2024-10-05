@@ -56,14 +56,6 @@ int main(void){
         printf("\n");
     }
 
-
-    // for(int i = 0; i < H3 ; i++){
-    //     for(int j = 0; j < W3; j++){
-    //         printf("%d ", input[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-    
     return 0;
 }
 

@@ -24,13 +24,15 @@ int main(void){
             sum += matrix[k][y];
             sum += matrix[x][k];
 
-            sum += ()? matrix[x+k][y+k] : 0;
-            sum += (0 <= (x + k) && (x + k) < N && 0 <= (y - k) && (y - k) < N) ? matrix[x+k][y-k] : 0;
+            // -N
+            sum += (0 <= (x - k) && 0 <= (y - k)) ? matrix[x-k][y-k] : 0;
+            sum += (0 <= (x - k) && (y + k) < N) ? matrix[x-k][y+k] : 0;
 
-            sum += (0 <= (x + k) && (x + k) < N && 0 <= (y + k) && (y + k) < N) ? matrix[x-k][y+k] : 0;
-            sum += (0 <= (x + k) && (x + k) < N && 0 <= (y - k) && (y - k) < N) ? matrix[x-k][y-k] : 0;
+            // N
+            sum += ((x + k) < N && (y + k) < N) ? matrix[x+k][y+k] : 0;
+            sum += ((x + k) < N && 0 <= (y - k)) ? matrix[x+k][y-k] : 0;
         }
-        sum -= 3 * matrix[x][y];
+        sum -= 5 * matrix[x][y];
 
         printf("%d\n", sum);
     }
