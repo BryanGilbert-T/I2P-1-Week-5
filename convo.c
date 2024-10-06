@@ -43,6 +43,7 @@ int main(void){
         }
     }
 
+    int first = 1;
     for(int i = 0; i < H3 - H2 + 1; i += stride){
         for(int j = 0; j < W3 - W2 + 1; j += stride){
             int sum = 0;
@@ -51,9 +52,16 @@ int main(void){
                     sum += input[i + m][j + n] * convo[m][n];
                 }
             }
-            printf("%d ", sum);
+            if(first){
+                printf("%d", sum);
+                first = 0;
+            }
+            else{
+                printf(" %d", sum);
+            }
         }
         printf("\n");
+        first = 1;
     }
 
     return 0;
