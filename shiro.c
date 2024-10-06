@@ -11,7 +11,7 @@ int main(void){
         for(int i = 0; i < length; i++){
             scanf("%d", &arr[i]);
         }
-        findHigh(arr, length);
+        printf("max: %d\n", findHigh(arr, length));
     }
     return 0;
 }
@@ -22,6 +22,16 @@ int findHigh(int *arr, int length){
         prefixSum[i] = (i - 1 >= 0) ? prefixSum[i - 1] + arr[i] : arr[i];
     }
 
-    printf("\n\n");
-    return 0;
+    int max = prefixSum[0];
+    int big;
+    for(int i = 0; i < length; i++){
+        for(int j = 0; j < length; j++){
+            big = prefixSum[j] - prefixSum[i - 1];
+            if(big > max){
+                max = big;
+            }
+        }
+    }
+
+    return max;
 }
