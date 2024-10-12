@@ -23,7 +23,7 @@ int main(void){
                 if(sum > max) max = sum;
                 printf("sum: %d\n", sum);
             }
-            printf("\n\nmax: %d\n\n", max);
+            printf("\nmax: %d\n\n", max);
         }
         printf("%d\n", max);
     }
