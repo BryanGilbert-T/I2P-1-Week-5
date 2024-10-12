@@ -2,89 +2,62 @@
 #include <string.h>
 #include <ctype.h>
 
-void print(char str[1000], int length){
-    int valid = 1;
-    char result[1000000];
-
-    int resultCounter = 0;
-
-    int isInteger = 0;
-
-    int integerTime = 1;
-    int stringTime = 0;
-
-    int integer = 0;
-    for(int i = 0; i < length; i++){
-        if(integerTime){
-            // checking validity
-            if(isalpha(str[i]) || str[i] == '0'){
-                valid = 0;
-                break;
-            }
-
-            //Result
-            integer = str[i];
-
-            // if next is integer
-            if(str[i + 1] == '\''){
-                integerTime = 0;
-                stringTime = 1;
-                isInteger = 1;
+int main(void){
+    char str[1000];
+    
+    while(scanf("%s", str) != EOF){
+        int index = 0;
+        int jumlah = 0;
+        int valid = 1;
+        char output[1000000] = {'\0'};
+        for(int i = 0; i < strlen(str);){
+            //itung jumlah
+            if(isdigit(str[i]) && str[i] != '0'){
+                jumlah = str[i] - '0';
                 i++;
-                continue;
+            }
+            else{
+                valid = 0;
             }
 
-            // if next is alpha
-            if(isalpha(str[i + 1])){
-                integerTime = 0;
-                stringTime = 1;
-                continue;
+            while(isdigit(str[i])){
+                jumlah = (jumlah * 10) + (str[i] - '0');
+                i++;
             }
-
-
-        }        
-        else if(stringTime){
-            // Checking Validity
-            if(isInteger){
-                isInteger = 0;
-                if(isalpha(str[i]) || str[i + 1] != '\''){
+            if(str[i] == '\''){
+                i++;
+                if(isalpha(str[i])){
                     valid = 0;
-                    break;
+                }
+                else{
+                    for(int j = 0; j < jumlah; j++){
+                        output[index++] = str[i];
+                    }
+                } 
+                i++;
+                if(str[i] != '\''){
+                    valid = 0;
+                }
+                i++;
+            }
+            else{
+                if(isalpha(str[i])){
+                    for(int j = 0; j < jumlah; j++){
+                        output[index++] = str[i];
+                    }
+                    i++;
+                }
+                else{
+                    valid = 0;
                 }
             }
-
-            // Result
-            for(int j = 0; j < integer; j++){
-                result[resultCounter] = str[i];
-                resultCounter++;
-            }
-
-            // Change time to integerTime
-            integerTime = 1;
-            stringTime = 0;
-
         }
-        printf("%c", str[i]);
-    }
-
-    if(valid){
-        printf("%s\n", result);
-    }
-    else{
-        printf("Domo cannot crack this computer\n");
-    }
-
-}
-
-int main(void){
-    int alpha = 0;
-    int integer = 1;
-
-    char str[1000];
-
-    while(scanf("%s", str) != EOF){
-        print(str, strlen(str));
-
+        if(valid){
+            printf("%s\n", output);
+        }
+        else{
+            printf("Domo cannot crack this computer\n");
+        }
     }
     return 0;
 }

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 struct Moved{
-    int movement[2];
+    int coordinate[2];
     char direction;
 };
 
@@ -34,7 +34,7 @@ int main(void){
         }
     }
     
-    printf("Sx: %d\nSy: %d\n", S[0], S[1]);
+    
 
     return 0;
 }
