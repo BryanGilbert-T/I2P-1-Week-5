@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 void print(char str[1000], int length){
     int valid = 1;
@@ -20,10 +21,32 @@ void print(char str[1000], int length){
                 valid = 0;
                 break;
             }
+
+            //Result
+            integer = str[i];
+
+            // if next is integer
+            if(str[i + 1] == '\''){
+                integerTime = 0;
+                stringTime = 1;
+                isInteger = 1;
+                i++;
+                continue;
+            }
+
+            // if next is alpha
+            if(isalpha(str[i + 1])){
+                integerTime = 0;
+                stringTime = 1;
+                continue;
+            }
+
+
         }        
         else if(stringTime){
             // Checking Validity
             if(isInteger){
+                isInteger = 0;
                 if(isalpha(str[i]) || str[i + 1] != '\''){
                     valid = 0;
                     break;
