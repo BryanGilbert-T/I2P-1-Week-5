@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct Moved{
+    int movement[2];
+    char direction;
+};
+
 int* move(char *command);
 int* motion(char *command, char nowValue);
 int main(void){
@@ -14,10 +19,11 @@ int main(void){
 
     int S[2];
 
+    struct Moved movement;
+
     for(int i = 0; i < H; i++){
         scanf("%s", &map[i]);
     }
-
 
     for(int i = 0; i < H; i++){
         for(int j = 0; j < W; j++){
