@@ -1,32 +1,34 @@
 #include <stdio.h>
+#include <limits.h>
 
-int main(void){
+int main(void) {
     int T;
-
     scanf("%d", &T);
 
-    int N;
-
-    for(int i = 0; i < T; i++){
+    for (int i = 0; i < T; i++) {
+        int N;
         scanf("%d", &N);
-        long long a[N];
-        long long sum;
-        for(int j = 0; j < N; j++){
-            scanf("%lld", &a[j]);
-            a[j] = (j - 1 >= 0) ? a[j - 1] + a[j] : a[j];
+
+        long long max_sum = LLONG_MIN;
+        long long current_sum = 0; 
+
+        for (int j = 0; j < N; j++) {
+            long long value;
+            scanf("%lld", &value);
+
+            current_sum += value; 
+
+            if (current_sum > max_sum) {
+                max_sum = current_sum; 
+            }
+
+            if (current_sum < 0) {
+                current_sum = 0; 
+            }
         }
 
-        long long max = a[0];
-        for(int i = 0; i < N; i++){
-            for(int j = i; j < N; j++){
-                sum = (i - 1 >= 0) ? a[j] - a[i - 1] : a[j];
-                if(sum > max) max = sum;
-                //printf("sum: %d\n", sum);
-            }
-            //printf("\nmax: %d\n\n", max);
-        }
-        printf("%d\n", max);
+        printf("%lld\n", max_sum); 
     }
-    
+
     return 0;
 }
