@@ -93,7 +93,7 @@ int main(void){
         Sx = Sx + movement[0];
         Sy = Sy + movement[1];
 
-        if(Sx < 0 || Sx > H || Sy < 0 || Sy > W){
+        if(Sx < 0 || Sx >= H || Sy < 0 || Sy >= W){
             printf("%d %d\n", Sx -= movement[0], Sy -= movement[1]);
             break;
         }
@@ -104,7 +104,8 @@ int main(void){
 
         free(movement);
     }
-    /*
+
+/*
     for(int i = 0; i < H; i++){
         for(int j = 0; j < W; j++){
             printf("%c ", map[i][j]);
@@ -112,6 +113,7 @@ int main(void){
         printf("\n");
     }
     */
+    
 
     return 0;
 }
